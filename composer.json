@@ -1,5 +1,10 @@
 {
     "require": {
-        "bramus/router": "~1.6"
+        "bramus/router": "~1.6",
+        "phpfastcache/phpfastcache": "^9.1"
+    },
+
+    "config": {
+        "platform-check": false
     }
 }
