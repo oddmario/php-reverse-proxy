@@ -1,9 +1,11 @@
 <?php
 $config = array(
     'proxy' => array(
-        "dest_host" => "127.0.0.1",
-        "dest_port" => 7777,
-        "dest_scheme" => "http"
+        "dest_type" => "tcp", // tcp, unix_socket
+        "dest_scheme" => "http",
+        "tcp_host" => "127.0.0.1",
+        "tcp_port" => 7777,
+        "unix_socket_path" => ""
     ),
     'timeouts' => array(
         'connect' => 0, // in seconds, 0 means no timeout

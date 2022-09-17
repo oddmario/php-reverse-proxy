@@ -62,7 +62,13 @@ $router->all('(.*)', function() {
 
     $res_headers = array();
     
-    $ch = curl_init( $config['proxy']['dest_scheme'] . '://' . $config['proxy']['dest_host'] . ':' . $config['proxy']['dest_port'] . $request['endpoint'] );
+    if( $config['proxy']['dest_type'] == "tcp" ) {
+        $ch = curl_init( $config['proxy']['dest_scheme'] . '://' . $config['proxy']['tcp_host'] . ':' . $config['proxy']['tcp_port'] . $request['endpoint'] );
+    } else {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $config['proxy']['dest_scheme'] . ':/proxy' . $request['endpoint']);
+        curl_setopt($ch, CURLOPT_UNIX_SOCKET_PATH, $config['proxy']['unix_socket_path']);
+    }
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $request['method']);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $request['body']);
