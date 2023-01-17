@@ -73,6 +73,7 @@ $router->all('(.*)', function() {
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $request['method']);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $request['body']);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $request['headers']);
     if( $config['verify_ssl'] == true ) {
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
